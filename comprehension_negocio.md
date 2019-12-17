@@ -2,9 +2,9 @@
 
 *Elaborado por:*
 + Daniela Pinto Veizaga, [dapivei](https://github.com/dapivei)
-+ Javier Goujon,
-+ Mario Cruz,
-+ Miguel Ávila,
++ Javier Valencia Goujon 123227, [valencig](https://github.com/valencig)
++ Mario Cruz García 123808, [mariocrugar](https://github.com/mariocrugar)
++ Miguel Ávila del Bosque 61100, [mavilad](https://github.com/mavilad)
 ***
 <div align="justify">
 
