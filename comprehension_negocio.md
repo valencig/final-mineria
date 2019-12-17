@@ -66,13 +66,9 @@ Conceptualmente sabemos que un trip_type determina el tipo de una visita. No obs
 
 **6. Plan de Proyecto**
 
-```mermaid
-graph TD;
-    Comprehensión/Negocio-->Comprehensión/Datos;
-    Comprehensión/Datos --> Preparación/Datos;
-    Preparación/Datos --> Modelado;
-    Modelado--> Evaluación;
-    Evaluación --> Implantación
-````
+<p align="center">
+  <image width="300" height="600" src="https://github.com/valencig/final-mineria/blob/master/imagenes/plan_trabajo.png">
+</p>
+https://github.com/valencig/final-mineria/blob/master/imagenes/plan_trabajo.png
 
 </div>
