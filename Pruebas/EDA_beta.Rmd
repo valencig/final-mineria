@@ -1,0 +1,150 @@
+---
+title: "Walmart"
+author: "Mario Alberto Cruz García"
+date: "17/12/2019"
+output: html_document
+---
+
+### Librerías
+
+```{r warning=FALSE}
+library(readr)
+library(stringr)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(ggthemes)
+library(purrr)
+library(GGally)
+library(corrplot)
+library(mice)
+```
+
+
+## EDA WALMART - TRAIN
+
+### Univariada
+
+#### Limpieza de datos
+
+```{r warning=FALSE}
+getwd()
+```
+
+```{r warning=FALSE}
+Datos_train_1 <- read.csv("train.csv",header=TRUE)
+
+Datos_train_tibble <- as_tibble(Datos_train_1)
+
+str(Datos_train_tibble)
+```
+
+```{r warning=FALSE}
+glimpse(Datos_train_tibble)
+```
+
+
+```{r warning=FALSE}
+md.pattern(Datos_train_tibble) # Donde hay datos faltantes
+```
+
+```{r warning=FALSE}
+# Imputación de datos
+Dato_sin <- Datos_train_tibble[-4]
+glimpse(Dato_sin)
+
+# Data_prelimpia <- mice(Dato_sin, m = 5, maxit = 55, meth = 'pmm', seed = 242450)
+
+```
+
+```{r warning=FALSE}
+nas <- apply(Datos_train_tibble, 1,function(x) sum(is.na(x)))
+sum(nas)   # Total de datos faltantes
+```
+
+```{r warning=FALSE}
+summary(Datos_train_tibble)
+```
+
+```{r warning=FALSE}
+round(cor(select(XXXXX,TripType, VisitNumber, Weekday, ScanCount,FinelineNumber)),2) 
+```
+
+```{r warning=FALSE}
+correlacion <- round(cor(select(XXXXX,TripType, VisitNumber, Weekday, ScanCount,FinelineNumber)),2) 
+corrplot(correlacion, method="number", type="upper")
+```
+
+```{r warning=FALSE}
+plot_corr <- XXXXX%>%
+  select(TripType, VisitNumber, Weekday, ScanCount,FinelineNumber)
+ggpairs(plot_corr,diag=list(continuous='densityDiag'))
+```
+
+```{r warning=FALSE}
+
+```
+
+```{r warning=FALSE}
+
+```
+
+```{r warning=FALSE}
+
+```
+
+```{r warning=FALSE}
+
+```
+
+### Bivariada
+
+```{r warning=FALSE}
+
+```
+
+```{r warning=FALSE}
+
+```
+
+```{r warning=FALSE}
+
+```
+
+```{r warning=FALSE}
+
+```
+
+```{r warning=FALSE}
+
+```
+
+```{r warning=FALSE}
+
+```
+
+### Multivariada
+
+```{r warning=FALSE}
+
+```
+
+```{r warning=FALSE}
+
+```
+
+```{r warning=FALSE}
+
+```
+
+```{r warning=FALSE}
+
+```
+
+```{r warning=FALSE}
+
+```
+
+```{r warning=FALSE}
+
+```
