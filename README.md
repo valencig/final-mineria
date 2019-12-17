@@ -1,7 +1,10 @@
-# final-mineria
-Archivo para que vayamos subiendo nuestro codigo y modelos y trabajemos mas rapido
+# Final-mineria
+Archivo para que vayamos subiendo nuestro codigo y modelos y trabajemos más rapido.
+
 *Adicional*
-El capítulo sobre el que se hará la pregunta es el 5.https://christophm.github.io/interpretable-ml-book/ 
+El capítulo sobre el que se hará la pregunta es el 5.
+
+https://christophm.github.io/interpretable-ml-book/ 
 
 ## Instrucciones correo Marmol
 Para el proyecto final se deberá resolver el problema descrito en https://www.kaggle.com/c/walmart-recruiting-trip-type-classification/data siguiendo la metodología CRISP-DM. Los entregables de cada etapa son:
