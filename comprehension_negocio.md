@@ -2,9 +2,9 @@
 
 *Elaborado por:*
 + Daniela Pinto Veizaga, [dapivei](https://github.com/dapivei)
-+ Javier Valencia Goujon 123227, [valencig](https://github.com/valencig)
-+ Mario Cruz García 123808, [mariocrugar](https://github.com/mariocrugar)
-+ Miguel Ávila del Bosque 61100, [mavilad](https://github.com/mavilad)
++ Javier Goujon,
++ Mario Cruz,
++ Miguel Ávila,
 ***
 <div align="justify">
 
@@ -28,11 +28,11 @@ Para ello, *Walmart* proporciona 2 conjuntos de datos:
 
 **3. Determinación de criterio de éxito (i.e. superar benchmark de modelos que utilizan datos sin preprocesar)**
 
-Las predicciones son evaluadas con una pérdida logarítmica multi clase. Para cada visita, se deberá entregar un conkintp de probabilidades estimadas (uno para cada trip_type). La fórmula empleada es:
+Las predicciones son evaluadas con una pérdida logarítmica multi clase. Para cada visita, se deberá entregar un cojunto de probabilidades estimadas (uno para cada trip_type). La fórmula empleada es:
 
 $$-\frac{1}{N}\sum_{i=1}^{N} \sum_{j=1}^{M} y_{ij} log(p_{ij})$$
 
-donde $N$ es el número de visitas aora el conjunto de prueba,  $M$ es el número de trip_types, $log$ el logaritmo natural, $y_{ij}$ is 1 si la observación $i$ es de clase $j$ y $0$ en otros casos, y $p_{ij}$ es la probabilidad estimada de que la observación $i$ pertenezca a la clase $j$.
+donde $N$ es el número de visitas  del conjunto de prueba,  $M$ es el número de TripTypr, $log$ el logaritmo natural, $y_{ij}$ es 1 si la observación $i$ es de clase $j$ y $0$ en otros casos, y $p_{ij}$ es la probabilidad estimada de que la observación $i$ pertenezca a la clase $j$.
 
 
 **4. Sobre los datos**
@@ -60,9 +60,9 @@ Cada visita puede contener un número variable de compras de distintos productos
 
 Walmart es una corporación multinacional de tiendas de origen estadounidense donde se pueden comprar y devolver distintos tipos de productos, pagarlos juntos al salir en la caja principal.
 
-Una visita (VisitNumber) representa una de estas compras globales. Así, una visita puede tener asociada compras y devoluciones (ScanCount) de una o más unidades de distintos productos pertenecientes a distintos departamentos (DepartmentDescription). Las visitas son representadas en el conjunto de datos, y son las que deben ser clasificadas en trip_types.
+Una visita (VisitNumber) representa una de estas compras globales. Así, una visita puede tener asociada compras y devoluciones (ScanCount) de una o más unidades de distintos productos pertenecientes a distintos departamentos (DepartmentDescription). Las visitas son representadas en el conjunto de datos, y son las que deben ser clasificadas en TripTypr.
 
-Conceptualmente sabemos que un trip_type determina el tipo de una visita. No obstante una particularidad del problema es que los tipos están únicamente representados por números, sin ninguna información al respecto del significado del mismo. La única información proporcionada en este sentido es que el trip_type 999 representa el tipo de visita genérico “otro”. Incluyendo el 999 existen 37 trip_types distintos.
+Conceptualmente, sabemos que un TripTypr determina el tipo de visita. 
 
 **6. Plan de Proyecto**
 
