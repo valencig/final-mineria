@@ -18,6 +18,7 @@ library(purrr)
 library(GGally)
 library(corrplot)
 library(mice)
+library(ROCR)
 ```
 
 
@@ -32,34 +33,61 @@ getwd()
 ```
 
 ```{r warning=FALSE}
-Datos_train_1 <- read.csv("train.csv",header=TRUE)
+# Datos_train_1 <- read.csv("train.csv",header=TRUE)
+# Datos_train_tibble <- as_tibble(Datos_train_1)
+# str(Datos_train_tibble)
 
-Datos_train_tibble <- as_tibble(Datos_train_1)
 
-str(Datos_train_tibble)
+# Datos con variables categóricas transformadas a numéricas
+Datos_train_exc <- read.csv("test_num.csv",header=TRUE)
+Datos_train_tibble_exc <- as_tibble(Datos_train_exc)
+str(Datos_train_tibble_exc)
+
+
+# Datos con filas de Nas eliminados. Aprox -4000
+Datos_sin_NAs <- Datos_train_tibble[!is.na(Datos_train_tibble$FinelineNumber),]
+
 ```
 
 ```{r warning=FALSE}
-glimpse(Datos_train_tibble)
+# glimpse(Datos_train_tibble)
+
+glimpse(Datos_train_tibble_exc)
+
+glimpse(Datos_sin_NAs)
+
 ```
 
 
 ```{r warning=FALSE}
-md.pattern(Datos_train_tibble) # Donde hay datos faltantes
+# md.pattern(Datos_train_tibble) # Donde hay datos faltantes
+
+md.pattern(Datos_train_tibble_exc) # Donde hay datos faltantes
+
+md.pattern(Datos_sin_NAs) # Donde hay datos faltantes
 ```
 
 ```{r warning=FALSE}
 # Imputación de datos
-Dato_sin <- Datos_train_tibble[-4]
-glimpse(Dato_sin)
 
-# Data_prelimpia <- mice(Dato_sin, m = 5, maxit = 55, meth = 'pmm', seed = 242450)
+# Dato_sin <- Datos_train_tibble[-4]
+# glimpse(Dato_sin)
+# 
+# Data_prelimpia <- mice(Dato_sin, m = 1, maxit = 2, meth = 'pmm', seed = 242450)
+# 
+# mice.impute.fastpmm(Dato_sin, donors = 5, type = 1, ridge = 1e-05,
+#   version = "", ...)
+
+Data_prelimpia <- mice(Datos_train_tibble_exc, m = 1, maxit = 2, meth = 'pmm', seed = 242)
+train_data <- complete(Data_prelimpia,1)  # Finalmente se modifica la base de datos
+
+md.pattern(train_data)
 
 ```
 
 ```{r warning=FALSE}
-nas <- apply(Datos_train_tibble, 1,function(x) sum(is.na(x)))
-sum(nas)   # Total de datos faltantes
+# nas <- apply(Datos_train_tibble, 1,function(x) sum(is.na(x)))
+# sum(nas)   # Total de datos faltantes
 ```
 
 ```{r warning=FALSE}
@@ -67,23 +95,111 @@ summary(Datos_train_tibble)
 ```
 
 ```{r warning=FALSE}
-round(cor(select(XXXXX,TripType, VisitNumber, Weekday, ScanCount,FinelineNumber)),2) 
+round(cor(select(train_data,TripType, VisitNumber, Weekday_num, ScanCount,FinelineNumber, Dep_Desc_num)),2) 
+
+Datos_sin_NAs
+
+round(cor(select(Datos_sin_NAs,TripType, Upc,VisitNumber, ScanCount,FinelineNumber)),2) 
 ```
 
 ```{r warning=FALSE}
-correlacion <- round(cor(select(XXXXX,TripType, VisitNumber, Weekday, ScanCount,FinelineNumber)),2) 
+correlacion <- round(cor(select(train_data,TripType, VisitNumber, Weekday_num, ScanCount,FinelineNumber, Dep_Desc_num)),2) 
 corrplot(correlacion, method="number", type="upper")
+
+
+correlacion <- round(cor(select(Datos_sin_NAs,TripType, VisitNumber, Upc, ScanCount,FinelineNumber)),2) 
+corrplot(correlacion, method="number", type="upper")
+
 ```
 
+No hay variables fuertemente correlacionadas para considerar.
+
 ```{r warning=FALSE}
-plot_corr <- XXXXX%>%
-  select(TripType, VisitNumber, Weekday, ScanCount,FinelineNumber)
+plot_corr <- train_data%>%
+  select(TripType, VisitNumber, Weekday_num, ScanCount,FinelineNumber, Dep_Desc_num)
 ggpairs(plot_corr,diag=list(continuous='densityDiag'))
 ```
 
+
+```{r warning=FALSE}
+
+write.csv(train_data,"/Users/mac/Downloads/train_data.csv", row.names = FALSE)
+
+write.csv(Datos_sin_NAs,"/Users/mac/Downloads/datos_sin_NAs.csv", row.names = FALSE)
+```
+
+
+```{r warning=FALSE}
+ggplot(data = train_data) +
+  geom_point(mapping = aes(x = ScanCount, y = FinelineNumber, color = Weekday_num))
+```
+
+
 ```{r warning=FALSE}
 
 ```
+
+
+**Análisis de ROC para determinar qué variables se pueden elegir para el modelo**
+
+```{r warning=FALSE}
+c1 = roc(train_data$TripType ~ train_data$VisitNumber)
+ci.auc(c1)
+c1$auc # Area de la curva de ROC  0.5394
+plot(c1)
+
+c2 = roc(train_data$TripType ~ train_data$ScanCount)
+ci.auc(c2)
+c2$auc   # 0.5211
+plot(c2)
+
+c3 = roc(train_data$TripType ~ train_data$FinelineNumber)
+ci.auc(c3)
+c3$auc    # 0.8618
+plot(c3)
+
+c4 = roc(train_data$TripType ~ train_data$Dep_Desc_num)
+ci.auc(c4)
+c4$auc   # 0.8301
+plot(c4)
+
+c5 = roc(train_data$TripType ~ train_data$Weekday_num)
+ci.auc(c5)
+c5$auc    # 0.5201
+plot(c5)  
+```
+
+De aquí se puede apreciar que las variables con mayor incidencia sobre el tripType para considerar:
++ FineLineNumber
++ Dep_Desc_num
+
+
+
+
+```{r warning=FALSE}
+
+```
+
+```{r warning=FALSE}
+
+```
+
+```{r warning=FALSE}
+
+```
+
+**Histogramas**
+
+```{r warning=FALSE}
+histogram(train_data$TripType)
+histogram(train_data$Weekday_num)
+histogram(train_data$ScanCount)
+```
+
+```{r warning=FALSE}
+
+```
+
 
 ```{r warning=FALSE}
 
