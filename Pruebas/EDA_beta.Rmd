@@ -196,27 +196,45 @@ histogram(train_data$Weekday_num)
 histogram(train_data$ScanCount)
 ```
 
+**Componentes principales**
+
+```{r warning=FALSE}
+Datos_pca = train_data[,-1]
+pc = princomp(na.omit(Datos_pca), cor = TRUE)
+# pc=princomp(Datos_pca)
+summary(pc)
+plot(pc)
+
+####
+pc$loadings
+####
+```
+
+Del análisis de Componentes principales se puede concluir que, el componente que mayor varianza concentra es el que
+tiene todas las variables; para el segundo componente, se elimina la variable _ScanCount_; mientras que en el
+tercer componente, únicamente se consideran las variables _ScanCount_ y _FinelineNumber_.
+
+
+
 ```{r warning=FALSE}
 
 ```
 
-
 ```{r warning=FALSE}
 
 ```
 
 ```{r warning=FALSE}
-
-```
-
-```{r warning=FALSE}
-
+source("utils-walmart.R")
+source("walmart-load.R")
+source("walmart-prepare.R")
+source("walmart-clean.R")
 ```
 
 ### Bivariada
 
 ```{r warning=FALSE}
-
+head(walmart_train)
 ```
 
 ```{r warning=FALSE}
