@@ -2,9 +2,10 @@
 
 *Elaborado por:*
 + Daniela Pinto Veizaga, [dapivei](https://github.com/dapivei)
-+ Javier Goujon,
-+ Mario Cruz,
-+ Miguel Ávila,
++ Javier Valencia Goujon 123227, [valencig](https://github.com/valencig)
+ + Mario Cruz García 123808, [mariocrugar](https://github.com/mariocrugar)
+ + Miguel Ávila del Bosque 61100, [mavilad](https://github.com/mavilad)
+
 ***
 <div align="justify">
 
@@ -62,7 +63,7 @@ Walmart es una corporación multinacional de tiendas de origen estadounidense do
 
 Una visita (VisitNumber) representa una de estas compras globales. Así, una visita puede tener asociada compras y devoluciones (ScanCount) de una o más unidades de distintos productos pertenecientes a distintos departamentos (DepartmentDescription). Las visitas son representadas en el conjunto de datos, y son las que deben ser clasificadas en TripTypr.
 
-Conceptualmente, sabemos que un TripTypr determina el tipo de visita. 
+Conceptualmente, sabemos que un TripTypr determina el tipo de visita.
 
 **6. Plan de Proyecto**
 
