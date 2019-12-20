@@ -21,7 +21,7 @@ El presente repositorio busca resolver el problema descrito en [Kaggle](https://
     + Determinación de criterio de éxito (i.e. superar benchmark de modelos que utilizan datos sin preprocesar)
     + Plan del proyecto
 
-+ Comprensión de los datos (R - Bash)  
++ [Comprensión de los datos](https://github.com/valencig/final-mineria/blob/master/EDA_ROC_PCA.html) (R - Bash)  
 
     + Reporte reproducible de recolección de datos: _para la preparación de los datos, primeramente se descargaron desde la página de **Kaggle** con ayuda de bash._
     + Análisis exploratorio de datos: análisis exploratorio, curva ROC y PCA.
