@@ -1,5 +1,13 @@
 # Walmart Classification Problem: Trabajo final de Minería y Análisis de Datos
 
+
+*Contribuidores:*
+
++ Daniela Pinto Veizaga
++ Javier Valencia Goujon
++ Mario Cruz García
++ Miguel Ávila del Bosque 
+
 ***
 
 ## Objetivo:
