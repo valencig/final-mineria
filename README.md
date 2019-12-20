@@ -1,31 +1,50 @@
 # Final-mineria
-Archivo para que vayamos subiendo nuestro codigo y modelos y trabajemos más rapido.
 
 *Adicional*
 El capítulo sobre el que se hará la pregunta es el 5.
 
 https://christophm.github.io/interpretable-ml-book/ 
 
-## Instrucciones correo Marmol
+## Instrucciones
 Para el proyecto final se deberá resolver el problema descrito en https://www.kaggle.com/c/walmart-recruiting-trip-type-classification/data siguiendo la metodología CRISP-DM. Los entregables de cada etapa son:
 
 ## Comprensión del negocio (R Markdown)  
-Antecedentes
-Determinación del objetivo
-Determinación de criterio de éxito (i.e. superar benchmark de modelos que utilizan datos sin preprocesar)
-Plan del proyecto
+
++ Antecedentes
++ Determinación del objetivo
++ Determinación de criterio de éxito (i.e. superar benchmark de modelos que utilizan datos sin preprocesar)
++ Plan del proyecto
+
+_Esta sección fue desarrollada en el siguiente markdown:_
+
+**comprehension_negocio.md**
 
 ## Comprensión de los datos (R - Bash)  
-Reporte reproducible de recolección de datos.
-Análisis exploratorio de datos (reporte reproducible)
-Univariado
-Bivariado
-Multivariado
 
-## Preparación de los datos (R - Bash)  
-Reporte reproducible de selección e integración de datos
-Reporte reproducible de limpieza de datos (incluyendo imputación)
-Reporte reproducible de ingeniería de características
++ Reporte reproducible de recolección de datos.
++ Análisis exploratorio de datos (reporte reproducible)
++ Univariado
++ Bivariado
++ Multivariado
+
+_Para esta sección, se desarrollo un modelo exploratorio de datos (EDA), con el propósito de conocer el comportamiento de las variables y encontrar tendencias en los datos para el análisis porsterio._ _Igualmente, se realizó un análisis ROC y PCA (Componentes principales) para determinar las variables más importantes y explicativas para nuestra variable de interés._
+
+
+_Para esta sección, se desarrollo un modelo exploratorio de datos (EDA), con el propósito de conocer el comportamiento de las variables y encontrar tendencias en los datos para el análisis porsterio._ _Igualmente, se realizó un análisis ROC y PCA (Componentes principales) para determinar las variables más importantes y explicativas para nuestra variable de interés._
+
+_Se puede ver el desarrollo completo de esta sección en:_
+
++ **comprehension_datos.html**
++ **exploratorio_datos.html**
++ **EDA_ROC_PCA.html**
+
+## Preparación de los datos (R - Bash) 
+
++ Reporte reproducible de selección e integración de datos
++ Reporte reproducible de limpieza de datos (incluyendo imputación)
++ Reporte reproducible de ingeniería de características
+
+_Para la preparación de los datos, primeramente se descargaron desde la página de **Kaggle** con ayuda de bash. Posteriormente, se trataron con:_
 
 ## Modelado (Python)  
 Diseño de prueba de modelo
