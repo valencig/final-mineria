@@ -5,7 +5,7 @@
 
 + Daniela Pinto Veizaga
 + Javier Valencia Goujon
-+ Mario Cruz García
++ Mario Alberto Cruz García
 + Miguel Ávila del Bosque 
 
 ***
