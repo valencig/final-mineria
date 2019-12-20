@@ -11,6 +11,8 @@
 
 **1. Antecedentes**
 
+Walmart es una corporación multinacional de tiendas de origen estadounidense, que opera cadenas de almacenes de descuento y clubes de almacenes. Es la mayor corporación pública del mundo según _Fortune_. Igualmente, es el minorista más grande del mundo y es la mayor ofertadora de empleop privado en el mundo con más de 2 millones de empleados. 
+
 *Walmart*, interesada en el progreso y mejora constante de su misión principal –mejora de la experiencia de sus clientes–, busca segmentar las visitas de sus clientes en diferentes tipos de viajes (*TripTypr*).
 
 A la fecha (previa a la publicación del concurso en Kaggle), los *tipos de viajes* creados por Walmart han sido producto del arte (opiniones de los clientes) y la ciencia (historial de compras del cliente).
@@ -19,7 +21,8 @@ Como parte del proyecto final se resolverá el problema descrito en [este sitio]
 
 **2. Determinación del objetivo: definición del problema**
 
-*Walmart* ha categorizado los viajes contenidos en sus datasets en 38 distintos tipo de viajes. El objeto del presente trabajo es recrear la clasificación realizada por *Walmart*, mediante el empleo de técnicas de machine learning.
+
+*Walmart* ha categorizado los viajes contenidos en sus datasets en 38 distintos tipo de viajes. El objeto del presente trabajo es recrear la clasificación realizada por *Walmart*, mediante el empleo de técnicas de machine learning. Para ayudar mejorar la toma de dicisiones en cuanto al plan de mercadotecnia de la empresa. Esto podría ayudár a mejorar las ventas a partir de un conocimiento de los habitos de consumo de los clientes. Con estrategias diversas como serían el reacomodo de productos, promociones por sector, ventas atadas, entre muchas otras.   
 
 Para ello, *Walmart* proporciona 2 conjuntos de datos:
 
