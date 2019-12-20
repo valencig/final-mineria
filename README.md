@@ -29,7 +29,7 @@ El presente repositorio busca resolver el problema descrito en [Kaggle](https://
     + Bivariado
     + Multivariado
 
-+ [Preparación de los datos](https://github.com/valencig/final-mineria/tree/master/codigoR-Bash] (R - Bash) 
++ [Preparación de los datos](https://github.com/valencig/final-mineria/tree/master/codigoR-Bash) (R - Bash) 
 
     + Reporte reproducible de selección e integración de datos
     + Reporte reproducible de limpieza de datos (incluyendo imputación)
