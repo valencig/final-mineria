@@ -1,12 +1,7 @@
-# Final-mineria
-
-*Adicional*
-El capítulo sobre el que se hará la pregunta es el 5.
-
-https://christophm.github.io/interpretable-ml-book/ 
+# Walmart Classification Problem: Trabajo final de Minería y Análisis de Datos
 
 ## Instrucciones
-Para el proyecto final se deberá resolver el problema descrito en https://www.kaggle.com/c/walmart-recruiting-trip-type-classification/data siguiendo la metodología CRISP-DM. Los entregables de cada etapa son:
+Para el proyecto final se deberá resolver el problema descrito en (Kaggle)[https://www.kaggle.com/c/walmart-recruiting-trip-type-classification/data] siguiendo la metodología CRISP-DM. Los entregables de cada etapa son:
 
 ## Comprensión del negocio (R Markdown)  
 
