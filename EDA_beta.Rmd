@@ -1,0 +1,233 @@
+---
+title: "Walmart"
+date: "17/12/2019"
+output: html_document
+---
+## Análisis de datos
+
+### Integrantes del equipo:
+
++ Daniela Pinto Veizaga
++ Miguel Ángel Ávila del Bosque
++ Javier Valencia Goujón
++ Mario Alberto Cruz García
+
+
+### Librerías
+
+```{r warning=FALSE}
+library(readr)
+library(stringr)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(ggthemes)
+library(purrr)
+library(GGally)
+library(corrplot)
+library(mice)
+library(ROCR)
+library(pROC)
+```
+
+
+## EDA WALMART - TRAIN
+
+### Univariada
+
+#### Limpieza de datos
+
+```{r warning=FALSE}
+getwd()
+```
+
+```{r warning=FALSE}
+# Extracción de datos
+
+# Datos_train_1 <- read.csv("train.csv",header=TRUE)
+# Datos_train_tibble <- as_tibble(Datos_train_1)
+# str(Datos_train_tibble)
+
+
+# Datos con variables categóricas transformadas a numéricas
+Datos_train_exc <- read.csv("test_num.csv",header=TRUE)
+Datos_train_tibble_exc <- as_tibble(Datos_train_exc)
+str(Datos_train_tibble_exc)
+
+
+# Datos con filas de Nas eliminados. Aprox -4000
+Datos_sin_NAs <- Datos_train_tibble_exc[!is.na(Datos_train_tibble_exc$FinelineNumber),]
+
+```
+
+```{r warning=FALSE}
+# glimpse(Datos_train_tibble)
+
+glimpse(Datos_train_tibble_exc)
+
+glimpse(Datos_sin_NAs)
+
+```
+
+Ubicación de los datos faltantes
+```{r warning=FALSE}
+# md.pattern(Datos_train_tibble) # Donde hay datos faltantes
+
+md.pattern(Datos_train_tibble_exc) # Donde hay datos faltantes
+
+md.pattern(Datos_sin_NAs) # Donde hay datos faltantes
+
+```
+
+Tratamiento de datos faltantes por medio de la librería **MICE**.
+
+```{r warning=FALSE}
+# Imputación de datos
+
+# Dato_sin <- Datos_train_tibble[-4]
+# glimpse(Dato_sin)
+# 
+# Data_prelimpia <- mice(Dato_sin, m = 1, maxit = 2, meth = 'pmm', seed = 242450)
+# 
+# mice.impute.fastpmm(Dato_sin, donors = 5, type = 1, ridge = 1e-05,
+#   version = "", ...)
+
+Data_prelimpia <- mice(Datos_train_tibble_exc, m = 1, maxit = 2, meth = 'pmm', seed = 242)
+train_data <- complete(Data_prelimpia,1)  # Finalmente se modifica la base de datos
+
+# Corroboración de la imputación
+md.pattern(train_data)
+```
+
+```{r warning=FALSE}
+# nas <- apply(Datos_train_tibble, 1,function(x) sum(is.na(x)))
+# sum(nas)   # Total de datos faltantes
+```
+
+```{r warning=FALSE, eval=FALSE}
+summary(Datos_train_tibble)
+```
+
+
+Ahora, veremos la correlación de las variables numéricas entre sí para encontrar patrones o si las variables son explicativas entre ellas.
+```{r warning=FALSE, eval=FALSE}
+round(cor(select(Datos_sin_NAs,TripType,VisitNumber, ScanCount,FinelineNumber)),2) 
+```
+
+```{r warning=FALSE}
+# correlacion <- round(cor(select(train_data,TripType, VisitNumber, Weekday_num, ScanCount,FinelineNumber, Dep_Desc_num)),2) 
+# corrplot(correlacion, method="number", type="upper")
+
+
+correlacion <- round(cor(select(Datos_sin_NAs,TripType, VisitNumber, ScanCount,FinelineNumber)),2)
+corrplot(correlacion, method="number", type="upper")
+
+```
+
+No hay variables fuertemente correlacionadas para considerar.
+
+```{r warning=FALSE, eval=FALSE}
+plot_corr <- train_data%>%
+  select(TripType, VisitNumber, Weekday_num, ScanCount,FinelineNumber, Dep_Desc_num)
+ggpairs(plot_corr,diag=list(continuous='densityDiag'))
+```
+
+Generación de archivo .csv para evaluar
+
+```{r warning=FALSE, eval=FALSE}
+
+write.csv(train_data,"/Users/mac/Downloads/train_data.csv", row.names = FALSE)
+
+write.csv(Datos_sin_NAs,"/Users/mac/Downloads/datos_sin_NAs.csv", row.names = FALSE)
+```
+
+Comparación de las variables _ScanCount_, _FinelineNumber_ y _Weekday_.
+
+```{r warning=FALSE}
+ggplot(data = train_data) +
+  geom_point(mapping = aes(x = ScanCount, y = FinelineNumber, color = Weekday_num))
+```
+
+No arrojó información relevante.
+
+**Histogramas**
+
+A continuación, se presentan cómo están distribuidos los datos de las variables.
+
+```{r warning=FALSE}
+histogram(train_data$TripType)
+histogram(train_data$Weekday_num)
+histogram(train_data$ScanCount)
+histogram(train_data$VisitNumber)
+```
+
+### Análisis ROC y de Componentes Principales
+
+**Análisis de ROC para determinar qué variables se pueden elegir para el modelo**
+
+Con los siguientes análisis se podrá determinar cuáles variables son importantes como explicadoras de nuestra variable de interés.
+
+```{r warning=FALSE}
+c1 = roc(train_data$TripType ~ train_data$VisitNumber)
+ci.auc(c1)
+c1$auc # Area de la curva de ROC  0.5394
+plot(c1)
+
+c2 = roc(train_data$TripType ~ train_data$ScanCount)
+ci.auc(c2)
+c2$auc   # 0.5211
+plot(c2)
+
+c3 = roc(train_data$TripType ~ train_data$FinelineNumber)
+ci.auc(c3)
+c3$auc    # 0.8618
+plot(c3)
+
+c4 = roc(train_data$TripType ~ train_data$Dep_Desc_num)
+ci.auc(c4)
+c4$auc   # 0.8301
+plot(c4)
+
+c5 = roc(train_data$TripType ~ train_data$Weekday_num)
+ci.auc(c5)
+c5$auc    # 0.5201
+plot(c5)  
+```
+
+De aquí se puede apreciar que las variables con mayor incidencia sobre el tripType para considerar:
++ FineLineNumber
++ Dep_Desc_num
+
+
+**Componentes principales**
+
+```{r warning=FALSE}
+Datos_pca = train_data[,-1]
+pc = princomp(na.omit(Datos_pca), cor = TRUE)
+# pc=princomp(Datos_pca)
+summary(pc)
+plot(pc)
+
+####
+pc$loadings
+####
+```
+
+Del análisis de Componentes principales se puede concluir que, el componente que mayor varianza concentra es el que
+tiene todas las variables; para el segundo componente, se elimina la variable _ScanCount_; mientras que en el
+tercer componente, únicamente se consideran las variables _ScanCount_ y _FinelineNumber_.
+
+
+```{r warning=FALSE, eval=FALSE}
+biplot(pc)
+```
+
+
+Prueba de las funciones de lectura
+
+```{r warning=FALSE, eval=FALSE}
+source("utils-walmart.R")
+source("walmart-load.R")
+source("walmart-prepare.R")
+source("walmart-clean.R")
+```
