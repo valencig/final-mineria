@@ -39,7 +39,11 @@ _Se puede ver el desarrollo completo de esta sección en:_
 + Reporte reproducible de limpieza de datos (incluyendo imputación)
 + Reporte reproducible de ingeniería de características
 
-_Para la preparación de los datos, primeramente se descargaron desde la página de **Kaggle** con ayuda de bash. Posteriormente, se trataron con:_
+_Para la preparación de los datos, primeramente se descargaron desde la página de **Kaggle** con ayuda de bash. Posteriormente, se trataron con R en los siguientes docuemntos dentro de la carpeta:_
+
++ (codigoR-Bash)[https://github.com/valencig/final-mineria/tree/master/codigoR-Bash]
+
+
 
 ## Modelado (Python)  
 Diseño de prueba de modelo
