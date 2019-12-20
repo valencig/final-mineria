@@ -1,18 +1,17 @@
 # Walmart Classification Problem: Trabajo final de Minería y Análisis de Datos
 
-## Instrucciones
-Para el proyecto final se deberá resolver el problema descrito en [Kaggle](https://www.kaggle.com/c/walmart-recruiting-trip-type-classification/data) siguiendo la metodología CRISP-DM. Los entregables de cada etapa son:
+***
 
-## Comprensión del negocio (R Markdown)  
+## Objetivo:
 
-+ Antecedentes
-+ Determinación del objetivo
-+ Determinación de criterio de éxito (i.e. superar benchmark de modelos que utilizan datos sin preprocesar)
-+ Plan del proyecto
+El presente repositorio busca resolver el problema descrito en [Kaggle](https://www.kaggle.com/c/walmart-recruiting-trip-type-classification/data) siguiendo la metodología CRISP-DM. Los entregables de cada etapa son:
 
-_Esta sección fue desarrollada en el siguiente markdown:_
++ [Comprensión del negocio](https://github.com/valencig/final-mineria/blob/master/comprehension_negocio.md) (R Markdown)  
 
-**[comprehension_negocio.md](https://github.com/valencig/final-mineria/blob/master/comprehension_negocio.md)**
+    + Antecedentes
+    + Determinación del objetivo
+    + Determinación de criterio de éxito (i.e. superar benchmark de modelos que utilizan datos sin preprocesar)
+    + Plan del proyecto
 
 ## Comprensión de los datos (R - Bash)  
 
@@ -61,10 +60,11 @@ Generación y carga de datos de prueba en Kaggle (reporte de posición final en 
 + **[Modelo y Evaluación.ipynb](https://github.com/valencig/final-mineria/blob/master/4-5.%20Modelo%20y%20Evaluaci%C3%B3n.ipynb)**
 
 ## Implantación (Python)  
+
 Desarrollo de web service en flask para predecir resultados a partir de nuevos datos
 Reporte ejecutivo final con principales hallazgos e hitos del proyecto (5 minutos)
 
-_Esta sección se intentó desarrollar y los documentos se encuentran en la siguiente carpeta:_
+_Esta sección se desarrolla  y los documentos se encuentran en la siguiente carpeta:_
 
 + **[Flask](https://github.com/valencig/final-mineria/tree/master/flask)**
 
