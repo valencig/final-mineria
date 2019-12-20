@@ -30,12 +30,11 @@ library(ggplot2)
 library(dplyr)
 library(sqldf)
 library(ggthemes)
-
 ```
 
 ```{r}
 #Importing data
-train <-read.csv("train.csv", header = TRUE)
+train <-read.csv("./data/train.csv", header = TRUE)
 
 train
 ```
@@ -320,7 +319,11 @@ for (i in unique(train$TripType)) {
 }
 ```
 
-
+#### Graficas PowerBi Desktop
+![Visit number by department and trip type](./imagenes/eda1.png)
+![Treemap NumVisits by department and triptype](./imagenes/eda2.png)
+![Weekday and triptype](./imagenes/eda3.png)
+![Trip tipe by weekday](./imagenes/eda4.png)
 
 
 
