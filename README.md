@@ -12,7 +12,7 @@ Para el proyecto final se deberá resolver el problema descrito en (Kaggle)[http
 
 _Esta sección fue desarrollada en el siguiente markdown:_
 
-**(comprehension_negocio.md)[https://github.com/valencig/final-mineria/blob/master/comprehension_negocio.md]**
+**[comprehension_negocio.md](https://github.com/valencig/final-mineria/blob/master/comprehension_negocio.md)**
 
 ## Comprensión de los datos (R - Bash)  
 
